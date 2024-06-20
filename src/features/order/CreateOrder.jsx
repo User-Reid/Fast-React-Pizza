@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Form, redirect } from "react-router-dom";
+import { Form, redirect, useActionData } from "react-router-dom";
 import { createOrder } from "../../services/apiRestaurant";
 import { useNavigation } from "react-router-dom";
 
@@ -39,6 +39,8 @@ function CreateOrder() {
   const navigation = useNavigation();
   const isSubmitting = navigation.state === "submitting";
 
+  const formErrors = useActionData();
+
   return (
     <div>
       <h2>Ready to order? Let`&apos;`s go!</h2>
@@ -52,6 +54,7 @@ function CreateOrder() {
 
         <div>
           <label>Phone number</label>
+          {formErrors?.phone && <p>{formErrors.phone}</p>}
           <div>
             <input type="tel" name="phone" required />
           </div>
