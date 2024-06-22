@@ -26,8 +26,8 @@ const cartSlice = createSlice({
       item.quantity++;
       state.totalPrice = item.quantity * item.unitPrice;
     },
-    clearCart(state, action) {
-      state.cart = initialState;
+    clearCart(state) {
+      state.cart = [];
     },
   },
 });
@@ -42,9 +42,15 @@ export const {
 
 export default cartSlice.reducer;
 
+export const getCart = (state) => state.cart.cart;
+export const getUsername = (state) => state.cart.username;
+
 export const getTotalCartQuantity = (state) =>
   state.cart.cart.reduce((sum, item) => sum + item.quantity, 0);
 
 export const getTotalCartPrice = (state) =>
   state.cart.cart.reduce((sum, item) => sum + item.totalPrice, 0);
+
+export const getCurrentQuantityById = (id) => (state) =>
+  state.cart.cart.find((item) => item.pizzaId === id)?.quantity ?? 0;
 // reselect if you want to useSelectors in slice for bigger applications
