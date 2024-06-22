@@ -47,5 +47,4 @@ export const getTotalCartQuantity = (state) =>
 
 export const getTotalCartPrice = (state) =>
   state.cart.cart.reduce((sum, item) => sum + item.totalPrice, 0);
-
 // reselect if you want to useSelectors in slice for bigger applications
